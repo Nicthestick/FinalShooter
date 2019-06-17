@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Photon.Pun;
 
 public class Gun : MonoBehaviour
 {
     //camera
     public Camera Cam;
-
+    PhotonView PV;
 
     //Animators
     [SerializeField]
@@ -76,6 +77,11 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        PV = GetComponent<PhotonView>();
+        if(!PV.IsMine && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
         cogPos = cog.transform.localPosition;
         ammo = maxAmmo;
         sfx = GetComponent<AudioSource>();
@@ -104,8 +110,12 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetButtonDown("Fire2"))
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire2"))
         {
             if(!aiming)
             {
@@ -209,6 +219,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButtonDown("Reload") && ammo != maxAmmo)
         {
+
             
             Reload();
         }
@@ -217,7 +228,11 @@ public class Gun : MonoBehaviour
 
     public void ADS(bool enabled)
     {
-        
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+
         if (enabled)
         {
             Debug.Log("ADS");
@@ -231,6 +246,7 @@ public class Gun : MonoBehaviour
 
     IEnumerator Delay(float sec, string type)
     {
+ 
         yield return new WaitForSeconds(sec);
         if(type == "stop")
         {
@@ -264,6 +280,10 @@ public class Gun : MonoBehaviour
 
     void Reload()
     {
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
         StartCoroutine( Delay(1.5f, "stop"));
         if(!reloading_)
         {
@@ -293,6 +313,10 @@ public class Gun : MonoBehaviour
 
     void ShootGun()
     {
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
         nextFire = Time.time + firerate;
 
         shootAnim.SetBool("Shooting", true);

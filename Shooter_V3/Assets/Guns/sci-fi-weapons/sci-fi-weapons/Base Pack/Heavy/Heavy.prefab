@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 1313118649052010209}
   - component: {fileID: 6277740328339478436}
   - component: {fileID: 1632882935517076562}
-  - component: {fileID: 3520943809134294546}
   m_Layer: 0
   m_Name: Heavy
   m_TagString: Untagged
@@ -155,14 +154,20 @@ MonoBehaviour:
   impact: {fileID: 0}
   force: 30
   firerate: 15
+  spray: 1
+  sprayz_: 10
   maxAmmo: 50
   ammo: 0
   ammoNum_: {fileID: 0}
   cog: {fileID: 4014987430346005271}
+  redDot: {fileID: 0}
+  reticle: []
   bulletSpawn: {fileID: 1871170356770524642}
   bullet: {fileID: 8733300494065044687, guid: 9b694ef0cb1385641a6dc21c20a61ea4, type: 3}
   muzzle: {fileID: 6684398071471757129}
   flash: {fileID: 100002, guid: eb553b67921c92649ac7dbbc561e2047, type: 3}
+  sfx: {fileID: 0}
+  sfxClip: {fileID: 0}
 --- !u!82 &1632882935517076562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -259,25 +264,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &3520943809134294546
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313118649051515585}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a79ff546cad246449930e1de840976e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1313118649051515587
 GameObject:
   m_ObjectHideFlags: 0
